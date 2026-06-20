@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>柯希豪 · 零售管培生 | 销售×组织力 动态简历</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0A0A1A;
+            color: #F0F0FF;
+            line-height: 1.5;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1A1A2E;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #6C63FF;
+            border-radius: 10px;
+        }
+
+        /* MG动态背景形状 */
+        .mg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .shape {
+            position: absolute;
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.2) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: floatShape 18s infinite alternate ease-in-out;
+        }
+        .shape-1 { width: 40vw; height: 40vw; top: -10%; left: -10%; background: radial-gradient(circle, #6C63FF30, #EC489A20); animation-duration: 22s; }
+        .shape-2 { width: 35vw; height: 35vw; bottom: -15%; right: -5%; background: radial-gradient(circle, #3B82F630, #06B6D420); animation-duration: 25s; animation-delay: -5s; }
+        .shape-3 { width: 25vw; height: 25vw; top: 40%; left: 70%; background: radial-gradient(circle, #F9731630, #FACC1520); animation-duration: 19s; animation-delay: -2s; }
+        .shape-4 { width: 18vw; height: 18vw; bottom: 20%; left: 15%; background: radial-gradient(circle, #A855F730, #EC489A30); animation-duration: 28s; }
+        
+        /* 粒子系统 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #6C63FF;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: particleDrift 12s infinite linear;
+        }
+        
+        @keyframes floatShape {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            100% { transform: translate(5%, 8%) scale(1.15) rotate(5deg); }
+        }
+        
+        @keyframes particleDrift {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(-100vh) translateX(30px); opacity: 0; }
+        }
+        
+        /* 鼠标跟随光晕 */
+        .cursor-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(108,99,255,0.2) 0%, rgba(108,99,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: transform 0.05s ease-out;
+            mix-blend-mode: overlay;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(108, 99, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, #A855F7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #E0E0FF;
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #6C63FF;
+        }
+
+        /* Hero 自我介绍区域 + 照片 */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem 0;
+        }
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2.5rem;
+            width: 100%;
+        }
+        .hero-content {
+            flex: 2;
+        }
+        .hero-content h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #FFFFFF 30%, #C084FC 70%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .hero-tagline {
+            font-size: 1.2rem;
+            color: #A78BFA;
+            margin-bottom: 0.8rem;
+            border-left: 3px solid #6C63FF;
+            padding-left: 1rem;
+        }
+        .hero-desc {
+            font-size: 1rem;
+            max-width: 550px;
+            margin: 1rem 0 1.2rem;
+            color: #CBCBFF;
+        }
+        .personal-info {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        .info-badge {
+            background: rgba(108, 99, 255, 0.2);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(4px);
+        }
+        .mg-btn {
+            display: inline-block;
+            background: linear-gradient(95deg, #6C63FF, #A855F7);
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+        .mg-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(108, 99, 255, 0.5);
+        }
+
+        /* 照片区域 */
+        .photo-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(20, 20, 45, 0.4);
+            backdrop-filter: blur(12px);
+            border-radius: 40px;
+            padding: 1.5rem;
+            border: 1px solid rgba(108, 99, 255, 0.3);
+            transition: 0.3s;
+        }
+        .avatar-frame {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #2A2A4A, #1A1A3A);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 3px solid #6C63FF;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+        }
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 实战项目经历区域 */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 2rem 0 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 70%;
+            height: 3px;
+            background: linear-gradient(90deg, #6C63FF, #F472B6);
+            border-radius: 3px;
+        }
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        /* 通用卡片样式 */
+        .exp-card {
+            background: rgba(15, 15, 35, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 32px;
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            transition: 0.2s;
+            overflow: hidden;
+        }
+        .exp-card:hover {
+            border-color: #6C63FF;
+            transform: translateY(-4px);
+        }
+
+        /* 左右布局 (新东方 & 凉粉) */
+        .exp-layout-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding: 1.8rem;
+        }
+        .exp-img-43 {
+            flex: 0 0 40%;
+            min-width: 200px;
+        }
+        .exp-img-43 .img-wrapper {
+            position: relative;
+            padding-bottom: 75%; /* 4:3 */
+            border-radius: 24px;
+            overflow: hidden;
+            background: #1E1E3A;
+        }
+        .exp-img-43 .img-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .exp-card:hover .exp-img-43 .img-wrapper img {
+            transform: scale(1.02);
+        }
+        .exp-content {
+            flex: 1;
+        }
+
+        /* 竖屏布局 (郑州中凯) */
+        .exp-layout-vertical {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding: 1.8rem;
+        }
+        .exp-img-34 {
+            flex: 0 0 35%;
+            min-width: 180px;
+        }
+        .exp-img-34 .img-wrapper {
+            position: relative;
+            padding-bottom: 133%; /* 3:4 竖屏比例 */
+            border-radius: 24px;
+            overflow: hidden;
+            background: #1E1E3A;
+        }
+        .exp-img-34 .img-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .exp-card:hover .exp-img-34 .img-wrapper img {
+            transform: scale(1.02);
+        }
+
+        .exp-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+            color: #C084FC;
+        }
+        .exp-date {
+            font-size: 0.75rem;
+            color: #9A9AD0;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+        .achievement-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .achievement-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            gap: 0.7rem;
+            align-items: baseline;
+        }
+        .achievement-list li i {
+            color: #F472B6;
+            font-size: 0.85rem;
+            margin-top: 0.2rem;
+            min-width: 1.4rem;
+        }
+        .highlight-number {
+            font-weight: 800;
+            color: #F472B6;
+        }
+
+        /* 链接按钮样式 */
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1.2rem;
+            padding: 0.5rem 1.2rem;
+            background: rgba(108, 99, 255, 0.2);
+            border-radius: 40px;
+            color: #C084FC;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 1px solid rgba(108, 99, 255, 0.3);
+        }
+        .project-link:hover {
+            background: rgba(108, 99, 255, 0.4);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* 组织力 & 社团领导力专区 (带图片) */
+        .org-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+            background: rgba(108, 99, 255, 0.08);
+            border-radius: 40px;
+            padding: 2rem;
+            backdrop-filter: blur(4px);
+        }
+        .org-item {
+            flex: 1;
+            background: rgba(20, 20, 45, 0.5);
+            border-radius: 28px;
+            padding: 1.2rem;
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .org-item:hover {
+            background: rgba(30, 30, 60, 0.6);
+            transform: translateY(-3px);
+        }
+        .org-img {
+            width: 100%;
+            height: 160px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #1E1E3A;
+        }
+        .org-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .org-item:hover .org-img img {
+            transform: scale(1.02);
+        }
+        .org-text {
+            flex: 1;
+        }
+        .org-text h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #C084FC;
+        }
+        .org-text p {
+            margin: 0.5rem 0;
+        }
+        .org-text ul {
+            padding-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        .org-text li {
+            margin-bottom: 0.4rem;
+        }
+        .org-link {
+            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #A78BFA;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .org-link:hover {
+            color: #C084FC;
+            transform: translateX(4px);
+        }
+
+        /* 技能与教育 */
+        .about-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+            background: rgba(15, 15, 30, 0.5);
+            border-radius: 48px;
+            padding: 2rem;
+        }
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1rem;
+        }
+        .skill-badge {
+            background: linear-gradient(115deg, #2A2A4A, #1F1F3A);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            border-left: 2px solid #6C63FF;
+        }
+        .edu-info {
+            flex: 1;
+            background: rgba(108, 99, 255, 0.1);
+            border-radius: 28px;
+            padding: 1.2rem;
+        }
+
+        /* 联系区域 */
+        .contact {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            padding: 2rem;
+            background: radial-gradient(ellipse at 30% 40%, rgba(108, 99, 255, 0.12), transparent);
+            border-radius: 60px;
+        }
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.8rem;
+            margin: 1.2rem 0;
+        }
+        .contact-icons a {
+            color: #E0E0FF;
+            font-size: 1.6rem;
+            background: #1F1F3A;
+            width: 48px;
+            height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .contact-icons a:hover {
+            color: #6C63FF;
+            transform: translateY(-4px);
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid rgba(108, 99, 255, 0.2);
+            font-size: 0.8rem;
+        }
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0 1.2rem; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-grid { flex-direction: column; }
+            .avatar-frame { width: 160px; height: 160px; }
+            .org-section { flex-direction: column; }
+            .exp-layout-row { flex-direction: column; }
+            .exp-layout-vertical { flex-direction: column; }
+            .exp-img-43, .exp-img-34 { flex: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="mg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+</div>
+<div class="particles" id="particlesContainer"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<div class="container">
+    <nav class="navbar">
+        <div class="logo">✦ 柯希豪 · 零售管培生</div>
+        <div class="nav-links">
+            <a href="#home" class="active">关于我</a>
+            <a href="#projects">实战经历</a>
+            <a href="#organization">组织力</a>
+            <a href="#contact">联系</a>
+        </div>
+    </nav>
+
+    <!-- 自我介绍区域 + 照片 -->
+    <section id="home" class="hero">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <h1>柯希豪<br>用销售力驱动增长</h1>
+                <div class="hero-tagline">零售管培生 · 用户运营实战派 | 组织协调多面手</div>
+                <p class="hero-desc">从校园创业摆摊单日60份，到新东方内容营销227W+曝光、私域单日成交86单，我擅长用数据和同理心打通零售全链路。具备影视编导思维 + 强销售转化能力，能快速适应一线业务与团队协同。</p>
+                <div class="personal-info">
+                    <span class="info-badge"><i class="fas fa-envelope"></i> 19102827035@163.com</span>
+                    <span class="info-badge"><i class="fas fa-chart-line"></i> 184cm / 75kg</span>
+                    <span class="info-badge"><i class="fas fa-futbol"></i> 摄影/篮球/策略</span>
+                </div>
+                <a href="#projects" class="mg-btn">查看实战项目 <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <!-- 照片区域（无提示框） -->
+            <div class="photo-area">
+                <div class="avatar-frame">
+                    <!-- 请将您的照片文件名替换此处 -->
+                    <img class="avatar-img" id="userAvatar" src="my_photo.jpg" alt="个人照片">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 实战项目经历区域 -->
+    <section id="projects">
+        <div class="section-title">📌 实战项目经历</div>
+        <div class="projects-list">
+            <!-- 新东方教育集团：左右布局，左边大图 4:3 -->
+            <div class="exp-card fade-up exp-layout-row">
+                <div class="exp-img-43">
+                    <div class="img-wrapper">
+                        <!-- 新东方项目照片，请替换为您的实际图片路径 -->
+                        <img src="xindongfang.png" alt="新东方项目照片">
+                    </div>
+                </div>
+                <div class="exp-content">
+                    <h3>新东方教育集团 · 用户运营</h3>
+                    <div class="exp-date">2025/11 – 2026/02</div>
+                    <ul class="achievement-list">
+                        <li><i class="fas fa-chart-simple"></i> 内容营销端：负责短视频策划、拍摄与剪辑，基于用户洞察优化内容策略，实现内容整体展现<span class="highlight-number">227W+</span>，素材点击率<span class="highlight-number">6%</span>，5秒播放率<span class="highlight-number">36.4%</span></li>
+                        <li><i class="fas fa-chart-line"></i> 销售转化端：直接参与电话销售与线下地推工作，面向意向用户进行产品讲解、需求挖掘与异议处理，累计完成<span class="highlight-number">1102单</span>成交订单，成交金额<span class="highlight-number">2.2万元</span></li>
+                        <li><i class="fas fa-users"></i> 与市场团队紧密配合，优化话术及推广节奏，提升全链路转化效率</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 郑州中凯科技：竖屏风格，左侧竖图 3:4 -->
+            <div class="exp-card fade-up exp-layout-vertical">
+                <div class="exp-img-34">
+                    <div class="img-wrapper">
+                        <!-- 郑州中科项目照片（竖屏风格），请替换为实际图片 -->
+                        <img src="zk.png"郑州中科项目竖图">
+                    </div>
+                </div>
+                <div class="exp-content">
+                    <h3>郑州中凯科技 · 销售运营</h3>
+                    <div class="exp-date">2025/06 – 2025/09</div>
+                    <ul class="achievement-list">
+                        <li><i class="fas fa-chart-line"></i> C端私域销售：负责汽油类产品的私域用户运营与转化，通过用户需求挖掘、精准沟通与活动策略设计，实现单日最高成交<span class="highlight-number">86单</span>、单日成交额超<span class="highlight-number">2.4万元</span>，形成高效的私域销售闭环</li>
+                        <li><i class="fas fa-building"></i> B端线下销售支持：配合团队参与面向门店客户的线下销售工作，协助进行产品讲解、客户对接与资料准备</li>
+                        <li><i class="fas fa-lightbulb"></i> 搭建私域转化SOP，沉淀可复用的销售方法论</li>
+                    </ul>
+                    <!-- PPT 链接，请将 # 替换为实际链接 -->
+                    <a href="https://acnhd84zhb53.feishu.cn/wiki/ZlRMwDYtCiSUDakX6FpcH7xDnhh" class="project-link" target="_blank"><i class="fas fa-file-powerpoint"></i> 查看项目PPT</a>
+                </div>
+            </div>
+            <!-- 凉粉量化交易：左右布局，左边 4:3 图片 -->
+            <div class="exp-card fade-up exp-layout-row">
+                <div class="exp-img-43">
+                    <div class="img-wrapper">
+                        <!-- 凉粉创业照片，请替换为实际图片 -->
+                        <img src="lf.jpg" alt="凉粉创业照片">
+                    </div>
+                </div>
+                <div class="exp-content">
+                    <h3>凉粉量化交易 · 校园创业</h3>
+                    <div class="exp-date">2020/03 – 2021/06</div>
+                    <ul class="achievement-list">
+                        <li><i class="fas fa-cart-shopping"></i> 自主发起摆摊售卖凉粉项目，独立完成选品、备料、制作到现场销售的全流程</li>
+                        <li><i class="fas fa-chart-line"></i> 累计经营<span class="highlight-number">7天</span>，日均销售约40份，总销售额超<span class="highlight-number">2000元</span>，其中单日最高销售<span class="highlight-number">60余份</span>，实现正向盈利</li>
+                        <li><i class="fas fa-chart-pie"></i> 锤炼产品定价、客户沟通及快速应变能力，验证低成本创业模式</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 组织力 & 领导力专区 (带图片) -->
+    <section id="organization">
+        <div class="section-title">📌 组织协调 · 团队领导力</div>
+        <div class="org-section fade-up">
+            <div class="org-item">
+                <div class="org-img">
+                    <!-- 社团活动照片，请替换 -->
+                    <img src="shetuan.jpg" alt="社团活动照片">
+                </div>
+                <div class="org-text">
+                    <h4><i class="fas fa-users-viewfinder"></i> 社团宣传部部长</h4>
+                    <p>2022/11 – 2026/03 · 四川传媒学院摄影社团</p>
+                    <ul>
+                        <li>统筹社团宣传与活动策划，带领团队完成多场校级活动视觉设计与推广</li>
+                        <li>协调摄影、文案、设计等成员分工，建立高效协作机制，提升部门产出效率</li>
+                        <li>组织招新及品牌活动，覆盖全校上千人</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="org-item">
+                <div class="org-img">
+                    <!-- 毕业作品剧照，请替换 -->
+                    <img src="bishe.jpg" alt="毕业作品现场">
+                </div>
+                <div class="org-text">
+                    <h4><i class="fas fa-clapperboard"></i> 毕业作品《怪物在墙上生长》副导演</h4>
+                    <p>2025/09 – 2025/10 · 省级非遗大赛入围</p>
+                    <ul>
+                        <li>协同编剧、导演完成剧本解读与分镜设计，统筹拍摄排期、预算与现场调度</li>
+                        <li>协调摄影、灯光、美术等多部门，保障拍摄顺利完成，后期参与剪辑把控</li>
+                        <li>展现跨部门组织能力及抗压交付能力</li>
+                    </ul>
+                    <!-- 作品链接，请将 # 替换为实际链接 -->
+                    <a href="https://ckshwptlpv.feishu.cn/file/PPKDbM77RoIN1ExQFH0coAAInkf?from=from_copylink" class="org-link" target="_blank"><i class="fas fa-external-link-alt"></i> 查看作品详情</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 教育 & 核心技能 -->
+    <div class="about-section fade-up">
+        <div class="about-text">
+            <h3>⚡ 零售管培生核心胜任力</h3>
+            <p>影视摄影与制作+市场营销复合背景，强结果导向。擅长将用户洞察转化为销售动作，拥有私域运营、地推转化、内容营销实战经验，同时具备团队组织与统筹能力。</p>
+            <div class="skill-list">
+                <span class="skill-badge">销售转化/SOP搭建</span>
+                <span class="skill-badge">私域用户运营</span>
+                <span class="skill-badge">短视频策划/数据分析</span>
+                <span class="skill-badge">团队统筹/跨部门协作</span>
+                <span class="skill-badge">客户需求挖掘</span>
+                <span class="skill-badge">零售门店支持</span>
+            </div>
+        </div>
+        <div class="edu-info">
+            <h4><i class="fas fa-graduation-cap"></i> 教育背景</h4>
+            <p><strong>四川传媒学院</strong> · 影视摄影与制作<br>2022/09 – 2026/07</p>
+            <p>主修课程：新媒体市场营销、影视创作、导演组织思维、摄影摄像<br>摄影社团宣传部部长 · 统筹招新与品牌宣传</p>
+            <hr style="border-color:#6C63FF40; margin: 12px 0;">
+            <p><i class="fas fa-award"></i> 荣誉：毕业设计入围“四川省大学生非遗创新大赛”</p>
+            <p><i class="fas fa-basketball"></i> 爱好：摄影、篮球、策略分析</p>
+        </div>
+    </div>
+
+    <!-- 联系 -->
+    <section id="contact">
+        <div class="contact fade-up">
+            <h2>📢 零售管培生 · 期待合作</h2>
+            <p>用销售力说话，以组织力协同 — 期待在零售赛道创造价值</p>
+            <div class="contact-icons">
+                <a href="#" aria-label="邮箱"><i class="fas fa-envelope"></i></a>
+                <a href="#" aria-label="领英"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="作品/简历"><i class="fas fa-file-alt"></i></a>
+                <a href="#" aria-label="电话"><i class="fas fa-phone-alt"></i></a>
+            </div>
+            <p style="font-size: 0.85rem;">📧 19102827035@163.com &nbsp;|&nbsp; 📞 随时联系 期待面试交流</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 柯希豪 — 零售管培生 销售×组织力动态简历 | 数据真实可查</p>
+    </footer>
+</div>
+
+<script>
+    // 粒子系统
+    const particlesContainer = document.getElementById('particlesContainer');
+    for (let i = 0; i < 70; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        const size = Math.random() * 5 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.animationDelay = `${Math.random() * 12}s`;
+        particle.style.animationDuration = `${8 + Math.random() * 12}s`;
+        particle.style.background = `hsl(${Math.random() * 60 + 240}, 80%, 70%)`;
+        particlesContainer.appendChild(particle);
+    }
+
+    // 鼠标光晕
+    const cursorGlow = document.getElementById('cursorGlow');
+    document.addEventListener('mousemove', (e) => {
+        cursorGlow.style.left = e.clientX + 'px';
+        cursorGlow.style.top = e.clientY + 'px';
+    });
+
+    // 滚动动画
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    fadeElements.forEach(el => observer.observe(el));
+
+    // 导航高亮与滚动
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('section, .hero');
+    function setActiveLink() {
+        let current = '';
+        const scrollPos = window.scrollY + 120;
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            if(scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+        if(!current && window.scrollY < 100) current = 'home';
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href').substring(1);
+            if(href === current) link.classList.add('active');
+        });
+    }
+    window.addEventListener('scroll', setActiveLink);
+    setActiveLink();
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+            if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            else if(targetId === 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+
+    // 视差微移
+    window.addEventListener('scroll', () => {
+        const shapes = document.querySelectorAll('.shape');
+        shapes.forEach((shape, idx) => {
+            const speed = 0.03 + idx * 0.01;
+            shape.style.transform = `translateY(${window.scrollY * speed}px)`;
+        });
+    });
+</script>
+</body>
+</html>
